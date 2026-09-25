@@ -1,0 +1,112 @@
+[
+  {
+    "id": "date_1790357727724_8t9u",
+    "place": "🍕 Mazali Pitseriya",
+    "date": "2026-09-26",
+    "time": "16:00",
+    "treat": "🧀 4 Pishloqli Pitsa + Fanta",
+    "note": "salomat",
+    "createdAt": "2026-09-25T17:35:27.724Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790357657192_4dm4",
+    "place": "🍿 Kinoza",
+    "date": "2026-09-26",
+    "time": "18:00",
+    "treat": "💖 Romantik Sevgi filmi",
+    "note": "salom\n",
+    "createdAt": "2026-09-25T17:34:17.192Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790357621115_nbcn",
+    "place": "? Shinam Qahvaxona",
+    "date": "2026-09-26",
+    "time": "18:30",
+    "treat": "? Cappuccino + Cheesecake",
+    "note": "Siz bilan uchrashishni intizorlik bilan kutaman! ?",
+    "createdAt": "2026-09-25T17:33:41.115Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790357095970_l0n8",
+    "place": "🍿 Kinoza",
+    "date": "2026-09-26",
+    "time": "18:00",
+    "treat": "💖 Romantik Sevgi filmi",
+    "note": "hello\n",
+    "createdAt": "2026-09-25T17:24:55.970Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790356893675_dl55",
+    "place": "🍿 Kinoza",
+    "date": "2026-09-26",
+    "time": "18:00",
+    "treat": "💖 Romantik Sevgi filmi",
+    "note": "salom\n",
+    "createdAt": "2026-09-25T17:21:33.675Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790356277927_k9bf",
+    "place": "🌳 Parkda Sayr",
+    "date": "2026-09-26",
+    "time": "18:00",
+    "treat": "🎧 Musiqa tinglab piknik qilish",
+    "note": "",
+    "createdAt": "2026-09-25T17:11:17.927Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790355355406_0mni",
+    "place": "🍿 Kinoza",
+    "date": "2026-09-26",
+    "time": "16:00",
+    "treat": "💖 Romantik Sevgi filmi",
+    "note": "",
+    "createdAt": "2026-09-25T16:55:55.406Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790355284693_lqzv",
+    "place": "🍕 Mazali Pitseriya",
+    "date": "2026-09-26",
+    "time": "16:00",
+    "treat": "✨ Ajoyib reja",
+    "note": "",
+    "createdAt": "2026-09-25T16:54:44.693Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790354684004_ajls",
+    "place": "🍕 Mazali Pitseriya",
+    "date": "2026-09-26",
+    "time": "16:00",
+    "treat": "🍰 Shokoladli Tort / Cheesecake",
+    "note": "",
+    "createdAt": "2026-09-25T16:44:44.004Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790354639957_4sm9",
+    "place": "🍿 Kinoza",
+    "date": "2026-09-26",
+    "time": "18:00",
+    "treat": "☕ Kofe va Shokolad",
+    "note": "",
+    "createdAt": "2026-09-25T16:43:59.957Z",
+    "status": "accepted"
+  },
+  {
+    "id": "date_1790354596720_wzth",
+    "place": "🌳 Parkda Sayr",
+    "date": "2026-09-27",
+    "time": "10:00",
+    "treat": "🌹 Kutilmagan sovg'a",
+    "note": "salom ha boraman",
+    "createdAt": "2026-09-25T16:43:16.720Z",
+    "status": "accepted"
+  }
+]

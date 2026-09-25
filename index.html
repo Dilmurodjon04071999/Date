@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sizga muhim savolim bor! 💖</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Dynamic Floating Hearts Background -->
+    <div class="bg-hearts" id="bgHearts"></div>
+
+    <!-- Main Card Container -->
+    <div class="card" id="mainCard">
+        
+        <!-- INITIAL QUESTION SECTION -->
+        <div id="questionSection" class="section active">
+            <div class="illustration glow-pulse">💖</div>
+            <h1 class="romantic-title">Menga bir go'zal kunni bag'ishlay olasizmi?</h1>
+            <p class="description">Siz bilan birgalikda mazali qahva ichib, yaqindan suhbat qurishni juda istardim. Menga qo'shilasizmi?</p>
+            
+            <div class="buttons-container" id="btnContainer">
+                <button class="btn btn-yes" id="yesBtn">
+                    <span>Ha, albatta! 🥰</span>
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <button class="btn btn-no" id="noBtn">
+                    <span>Yo'q 😢</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- MULTI-STEP DATE PLANNING WIZARD -->
+        <div id="wizardSection" class="section">
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="steps-indicator">
+                    <div class="step-dot active" data-step="1"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="step-dot" data-step="2"><i class="fa-solid fa-calendar-days"></i></div>
+                    <div class="step-dot" data-step="3"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="step-dot" data-step="4"><i class="fa-solid fa-comment-heart"></i></div>
+                    <div class="step-dot" data-step="5"><i class="fa-solid fa-ticket"></i></div>
+                </div>
+            </div>
+
+            <!-- STEP 1: UCHRASHUV JOYI -->
+            <div class="wizard-step active" id="step1">
+                <div class="step-header">
+                    <div class="step-icon">🎉</div>
+                    <h2>Uraaa! Juda xursandman! ✨</h2>
+                    <p>Uchrashuvimiz qayerda bo'lishini xohlaysiz? Tanlang:</p>
+                </div>
+
+                <div class="options-grid">
+                    <div class="option-card" data-category="place" data-value="☕ Shinam Qahvaxona" onclick="selectCardOption('place', '☕ Shinam Qahvaxona', this)">
+                        <div class="card-icon">☕</div>
+                        <div class="card-title">Shinam Qahvaxona</div>
+                        <div class="card-desc">Issiq kofe va samimiy suhbatlar</div>
+                    </div>
+                    <div class="option-card" data-category="place" data-value="🍕 Mazali Pitseriya" onclick="selectCardOption('place', '🍕 Mazali Pitseriya', this)">
+                        <div class="card-icon">🍕</div>
+                        <div class="card-title">Pitseriya</div>
+                        <div class="card-desc">Mazali pitsa va kechki ovqat</div>
+                    </div>
+                    <div class="option-card" data-category="place" data-value="🌳 Parkda Sayr" onclick="selectCardOption('place', '🌳 Parkda Sayr', this)">
+                        <div class="card-icon">🌳</div>
+                        <div class="card-title">Parkda Sayr</div>
+                        <div class="card-desc">Toza havo va chiroyli manzara</div>
+                    </div>
+                    <div class="option-card" data-category="place" data-value="🍿 Kinoza" onclick="selectCardOption('place', '🍿 Kinoza', this)">
+                        <div class="card-icon">🍿</div>
+                        <div class="card-title">Kino</div>
+                        <div class="card-desc">Eng zo'r film va popkorn</div>
+                    </div>
+                    <div class="option-card" data-category="place" data-value="🍦 Muzqaymoqxona" onclick="selectCardOption('place', '🍦 Muzqaymoqxona', this)">
+                        <div class="card-icon">🍦</div>
+                        <div class="card-title">Muzqaymoqxona</div>
+                        <div class="card-desc">Shirin va muzdek daqiqalar</div>
+                    </div>
+                    <div class="option-card" data-category="place" data-value="🎨 San'at & Galereya" onclick="selectCardOption('place', '🎨 San'at & Galereya', this)">
+                        <div class="card-icon">🎨</div>
+                        <div class="card-title">Galereya & Ko'rgazma</div>
+                        <div class="card-desc">Estetik va madaniy hordiq</div>
+                    </div>
+                </div>
+
+                <div class="wizard-nav">
+                    <button class="btn btn-next" id="step1Next" disabled onclick="goToStep(2)">
+                        Keyingisi <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: SANA VA VAQT -->
+            <div class="wizard-step" id="step2">
+                <div class="step-header">
+                    <div class="step-icon">📅</div>
+                    <h2>Qaysi kuni ko'rishamiz?</h2>
+                    <p>O'zingizga qulay sana va vaqtni belgilang</p>
+                </div>
+
+                <!-- Date selection badges -->
+                <div class="badge-group">
+                    <span class="pill-badge" onclick="setQuickDate('Bugun')">Bugun</span>
+                    <span class="pill-badge" onclick="setQuickDate('Ertaga')">Ertaga</span>
+                    <span class="pill-badge" onclick="setQuickDate('Dam olish kuni')">Dam olish kuni</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="customDate"><i class="fa-regular fa-calendar-check"></i> Sana tanlang:</label>
+                    <input type="date" id="customDate" class="romantic-input" onchange="updateDateTimeSelection()">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-regular fa-clock"></i> Vaqt tanlang:</label>
+                    <div class="badge-group time-badges">
+                        <span class="pill-badge time-pill" onclick="setQuickTime('16:00')">16:00</span>
+                        <span class="pill-badge time-pill" onclick="setQuickTime('18:00')">18:00</span>
+                        <span class="pill-badge time-pill" onclick="setQuickTime('19:30')">19:30</span>
+                        <span class="pill-badge time-pill" onclick="setQuickTime('20:30')">20:30</span>
+                    </div>
+                    <input type="time" id="customTime" class="romantic-input" onchange="updateDateTimeSelection()" style="margin-top: 10px;">
+                </div>
+
+                <div class="wizard-nav">
+                    <button class="btn btn-back" onclick="goToStep(1)"><i class="fa-solid fa-arrow-left"></i> Orqaga</button>
+                    <button class="btn btn-next" id="step2Next" onclick="goToStep(3)">
+                        Keyingisi <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: MAVZUGA DOIR SUB-TANLOVLAR (DYNAMIC THEMED OPTIONS) -->
+            <div class="wizard-step" id="step3">
+                <div class="step-header">
+                    <div class="step-icon" id="step3Icon">✨</div>
+                    <h2 id="step3Title">Nimani afzal ko'rasiz?</h2>
+                    <p id="step3Subtitle">Tanlagan joyingizga mos takliflardan birini tanlang</p>
+                </div>
+
+                <div class="treats-list" id="themedTreatsList">
+                    <!-- Dynamic choices will be rendered here via JS -->
+                </div>
+
+                <div class="wizard-nav">
+                    <button class="btn btn-back" onclick="goToStep(2)"><i class="fa-solid fa-arrow-left"></i> Orqaga</button>
+                    <button class="btn btn-next" id="step3Next" onclick="goToStep(4)">
+                        Keyingisi <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 4: MAXSUS IZOH -->
+            <div class="wizard-step" id="step4">
+                <div class="step-header">
+                    <div class="step-icon">💬</div>
+                    <h2>Maxsus tilak yoki xabar</h2>
+                    <p>Menga aytmoqchi bo'lgan biror so'zingiz yoki taklifingiz bormi?</p>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="noteInput" class="romantic-textarea" placeholder="Masalan: Meni soat 18:00 da kutishingizni xohlayman... ✨ (Ixtiyoriy)"></textarea>
+                </div>
+
+                <div class="wizard-nav">
+                    <button class="btn btn-back" onclick="goToStep(3)"><i class="fa-solid fa-arrow-left"></i> Orqaga</button>
+                    <button class="btn btn-next" onclick="prepareTicketStep()">
+                        Chiptani ko'rish 🎟️ <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 5: UCHRASHUV CHIPTASI (TICKET PASS) -->
+            <div class="wizard-step" id="step5">
+                <div class="step-header">
+                    <div class="step-icon glow-pulse">🎟️</div>
+                    <h2>Uchrashuv Chiptangiz Tayyor!</h2>
+                    <p>Barcha ma'lumotlarni tekshiring va tasdiqlang</p>
+                </div>
+
+                <!-- Ticket Card -->
+                <div class="ticket-card" id="ticketPass">
+                    <div class="ticket-header">
+                        <span class="ticket-badge">VIP DATE PASS</span>
+                        <span class="ticket-logo">💖 LOVE EXP</span>
+                    </div>
+                    <div class="ticket-body">
+                        <div class="ticket-row">
+                            <span class="label"><i class="fa-solid fa-location-dot"></i> Joy:</span>
+                            <span class="val" id="summaryPlace">-</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="label"><i class="fa-solid fa-calendar"></i> Sana:</span>
+                            <span class="val" id="summaryDate">-</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="label"><i class="fa-solid fa-clock"></i> Vaqt:</span>
+                            <span class="val" id="summaryTime">-</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="label"><i class="fa-solid fa-star"></i> Tanlangan reja:</span>
+                            <span class="val" id="summaryTreat">-</span>
+                        </div>
+                        <div class="ticket-row" id="summaryNoteRow">
+                            <span class="label"><i class="fa-solid fa-comment-dots"></i> Xabar:</span>
+                            <span class="val" id="summaryNote">-</span>
+                        </div>
+                    </div>
+                    <div class="ticket-footer">
+                        <div class="barcode">||| | |||| | ||| |||| | |||</div>
+                        <div class="ticket-code">CONFIRMED-DATE-2026</div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="wizard-nav vertical-nav">
+                    <button class="btn btn-confirm" id="confirmBtn" onclick="submitBooking()">
+                        <span>Uchrashuvni Tasdiqlash & Yuborish 💌</span>
+                    </button>
+                    <button class="btn btn-back-link" onclick="goToStep(4)">Tahrirlash</button>
+                </div>
+            </div>
+
+            <!-- FINAL CONFIRMATION SUCCESS DISPLAY -->
+            <div id="finalSuccessScreen" class="final-success" style="display: none;">
+                <div class="illustration glow-pulse">🥰</div>
+                <h1 class="romantic-title">Ajoyib! Reja saqlandi! ✨</h1>
+                <p class="description">Uchrashuv ma'lumotlari muvaffaqiyatli qabul qilindi. Tez orada ko'rishguncha!</p>
+
+                <div class="status-box">
+                    <i class="fa-solid fa-circle-check status-icon"></i>
+                    <span>Telegram orqali bildirishnoma yuborildi 📲</span>
+                </div>
+
+                <div class="countdown-container" id="countdownBox">
+                    <div class="countdown-title">Uchrashuvgacha qolgan vaqt:</div>
+                    <div class="countdown-timer" id="countdownTimer">-- kun -- soat -- daqiqa</div>
+                </div>
+
+                <button class="btn btn-yes" onclick="window.location.reload()" style="margin-top: 20px;">
+                    <i class="fa-solid fa-arrow-rotate-right"></i> Qaytadan boshlash
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>
