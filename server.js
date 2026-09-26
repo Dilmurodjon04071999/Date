@@ -101,9 +101,18 @@ function sendTelegramNotification(booking) {
     req.end();
 }
 
+// === SAHIFA ROUTLARI (Vercel uchun muhim) ===
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
 // === API ENDPOINTLARI ===
 
-// 1. Yangi uchrashuv bronze/booking yaratish
+// 1. Yangi uchrashuv booking yaratish
 app.post('/api/booking', (req, res) => {
     const { place, date, time, treat, note } = req.body;
 
@@ -123,7 +132,7 @@ app.post('/api/booking', (req, res) => {
     };
 
     const bookings = getBookings();
-    bookings.unshift(newBooking); // Yangisi eng tepada bo'ladi
+    bookings.unshift(newBooking);
     saveBookings(bookings);
 
     // Telegram botga bildirishnoma yuborish
@@ -163,6 +172,6 @@ app.delete('/api/bookings/:id', (req, res) => {
 
 // Serverni ishga tushirish
 app.listen(PORT, () => {
-    console.log(` Server ishga tushdi: http://localhost:${PORT}`);
-    console.log(` Admin paneli: http://localhost:${PORT}/admin.html`);
+    console.log(`Server ishga tushdi: http://localhost:${PORT}`);
+    console.log(`Admin paneli: http://localhost:${PORT}/admin.html`);
 });
