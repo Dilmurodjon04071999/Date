@@ -7,29 +7,37 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATA_DIR = path.join(__dirname, 'data');
+
+// Vercel serverless muhitida fayllarni /tmp papkasiga yozish kerak
+const DATA_DIR = process.env.VERCEL 
+    ? path.join('/tmp', 'data') 
+    : path.join(__dirname, 'data');
 const DB_FILE = path.join(DATA_DIR, 'bookings.json');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
-// Public papkasi bo'lmasa loyiha ildizidan xizmat ko'rsatish
+// Statiq fayllarni uzatish (index.html, style.css, script.js...)
 app.use(express.static(__dirname));
 
-// Data directory va faylni tekshirish va yaratish
-if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+// Data directory va faylni tekshirish hamda yaratish
+try {
+    if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
 
-if (!fs.existsSync(DB_FILE)) {
-    fs.writeFileSync(DB_FILE, JSON.stringify([], null, 2), 'utf-8');
+    if (!fs.existsSync(DB_FILE)) {
+        fs.writeFileSync(DB_FILE, JSON.stringify([], null, 2), 'utf-8');
+    }
+} catch (err) {
+    console.error('Data papkasini yaratishda ogohlantirish:', err.message);
 }
 
 // Yordamchi funksiyalar: JSON DB o'qish va yozish
 function getBookings() {
     try {
+        if (!fs.existsSync(DB_FILE)) return [];
         const data = fs.readFileSync(DB_FILE, 'utf-8');
         return JSON.parse(data || '[]');
     } catch (err) {
@@ -101,12 +109,16 @@ function sendTelegramNotification(booking) {
     req.end();
 }
 
-// === SAHIFA ROUTLARI (Vercel uchun muhim) ===
+// === SAHIFA ROUTLARI (Vercel va mahalliy muhit uchun) ===
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
+app.get('/admin.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
@@ -170,8 +182,13 @@ app.delete('/api/bookings/:id', (req, res) => {
     res.json({ success: true, message: 'Uchrashuv o\'chirildi' });
 });
 
-// Serverni ishga tushirish
-app.listen(PORT, () => {
-    console.log(`Server ishga tushdi: http://localhost:${PORT}`);
-    console.log(`Admin paneli: http://localhost:${PORT}/admin.html`);
-});
+// Mahalliy kompyuterda ishga tushirish (Vercel emasligida)
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(` Server ishga tushdi: http://localhost:${PORT}`);
+        console.log(` Admin paneli: http://localhost:${PORT}/admin.html`);
+    });
+}
+
+// Vercel serverless funksiyasi uchun export qilish
+module.exports = app;
